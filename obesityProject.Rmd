@@ -1,0 +1,113 @@
+## Dataset
+The dataset evaluates the obesity risk based on factors such as gender, age, number of meals, consumption of alcohol, physical activity frequency, etc. It includes 20758 observations and 18 columns
+
+```{r}
+library(tidyverse)
+my_data <- read.csv("obesity_level.csv")
+summary(my_data)
+```
+
+### Histogram plot
+```{r}
+hist(my_data$FAF, breaks = 5, xlab="Hours",
+     main = "Physical Activity Frequency",
+     col = "#60B8A3",
+     border = "white")
+```
+
+The histogram shows the distribution of time (hours) spent on physical activity of participants.
+The right-skewed distribution indicates that the majority of individuals spend between **0.0 and 1.0 hours** for physical activity.
+
+Interestingly, the distribution shows a *secondary peak* at **1.5 to 2.0 hours**, representing a significant proportion of participants with physical activity duration.
+
+We assume that this peak comes from the young people - those in their prime - who are ready to devote more time to physical activity.
+
+
+Let's see 
+
+```{r}
+group_15_20 <- my_data %>%
+  filter(FAF >= 1.5, FAF <= 2.0)
+
+ggplot(group_15_20, aes(x = Age)) +
+         geom_histogram(binwidth=5, fill ='steelblue', color='white')+
+         labs(title = "Age distribution of individuals with 1.5 - 2.0 hours for physical activity",
+              x = "Age", 
+              y = "Count") +
+         theme_minimal()
+```
+
+From the graph, we easily see that most of the participants whose age is *around 20* devote **1.5 to 2.0 hours** to physical activity.
+
+### Statistical Calculation
+**Mean of Physical Activity Frequency**
+```{r}
+mean_activity <- mean(my_data$FAF, na.rm = TRUE)
+mean_activity
+
+```
+
+**Standard deviation of Physical Activity Frequency**
+```{r}
+sd_activity <- sd(my_data$FAF, na.rm = TRUE)
+sd_activity
+```
+
+### Apply correlation 
+**to detect a relationship between Age and Physical Activity Frequency**
+```{r}
+cor.test(my_data$Age, my_data$FAF)
+```
+
+**R-squared and p-value**
+```{r}
+linear_age_faf <- lm(FAF ~ Age, data = my_data)
+summary(linear_age_faf)
+```
+
+**Scatter plot**
+```{r}
+ggplot(my_data, aes(x = Age, y = FAF)) +
+  geom_point(alpha = 0.5, color = "darkgreen") +
+  geom_smooth(method="lm", color='red') +
+  theme_minimal() +
+  labs(title = "Age vs Physical Activity Frequency",
+       x = "Age",
+       y = "Physical Activity Frequency")
+```
+     
+The correlation coefficient is **-0.19**, indicating that a weak relationship. In the other hand, when age increases, the Physical Activity Frequency tends to decrease slightly. 
+
+The **p-value < 2.2e-16**, showing that the relation is statistically significant.
+The linear regression model produced **R-squared = 0.03696**, meaning Age explains only **3.7%** of the variation in Physical Activity Frequency.
+Therefore, although Age has a statistically significant impact on physical activity, it is not a strong predictor, and other factors might play a much larger role.
+
+### Second statistic test
+```{r}
+ggplot(my_data, aes(x = Weight)) +
+  geom_histogram(binwidth = 5, fill = "orange", color = "white") +
+  geom_text(stat = "bin",
+            binwidth = 5,
+            aes(label = ..count..),
+            vjust = -0.5,
+            color = "black",
+            size = 3) +
+  labs(title = "Weight Distribution", x = "Weight", y = "Count") +
+  theme_minimal()
+
+
+```
+
+The Weight distribution is **not normal**
+It spreads widely across the range of weights. It shows clear peaks around: 50, 80, 110, and 120. This indicates that weight in the dataset is not centered around a single value but forms multiple clusters
+
+### T-test
+I divided my dataset into two groups based on the variable Gender (Male vs Female) and used t-test to test for significant differences between the two groups.
+
+```{r}
+t.test(Weight ~ Gender, data = my_data)
+```
+
+The t‑test:
+The mean Weight for males is **91.03**, while the mean Weight of females is **84.77**
+the **p-value < 0.05**, indicating that the difference is statistically significant.
