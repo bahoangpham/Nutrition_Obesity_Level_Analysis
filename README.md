@@ -3,4 +3,4 @@ While looking for a dataset on a healthcare topic, I found one that collects the
 
 The CSV file for the project is [my dataset](https://raw.githubusercontent.com/bahoangpham/Nutrition_Obesity_Level_Analysis/refs/heads/main/obesity_level.csv)
 
-**[View my R Markdown HTML report]**(https://bahoangpham.github.io/Nutrition_Obesity_Level_Analysis/obesityProject.html)
+[View my R Markdown HTML report](https://bahoangpham.github.io/Nutrition_Obesity_Level_Analysis/obesityProject.html)
