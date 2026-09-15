@@ -1,2 +1,4 @@
 # Nutrition_Obesity_Level_Analysis
 While looking for a dataset on a healthcare topic, I found one that collects the **nutrition and dietary behaviors** of American adults. This dataset includes data on *the frequency of fruit and vegetable consumption, the frequency of fast-food consumption, disease-preventive behaviors, and data by age, sex, state, income, and race*. By analyzing this dataset, I want to determine whether age influences nutrition and dietary behaviors and which **age groups** are at the highest risk of obesity.
+The CSV file for the project is 
+[View my R Markdown HTML report](https://bahoangpham.github.io/Nutrition_Obesity_Level_Analysis/obesityProject.html)
