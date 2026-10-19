@@ -5,4 +5,4 @@ The CSV file for the project is [my dataset](https://raw.githubusercontent.com/b
 
 [View my R Markdown HTML report](https://bahoangpham.github.io/Nutrition_Obesity_Level_Analysis/obesityProject.html)
 
-[View my 3D Visualization on CodePen](https://codepen.io/bapham/pen/ogZqeZo?editors=1010)
+[View my 3D Visualization on CodePen](https://codepen.io/bapham/full/ogZqeZo)
