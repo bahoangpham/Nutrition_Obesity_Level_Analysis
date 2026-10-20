@@ -1,4 +1,6 @@
 // For bundlers such as Vite and Webpack omit https://esm.sh/
+alert("script loaded");
+
 import { csv, json } from 'https://esm.sh/d3-fetch';
 import { select, selectAll } from 'https://esm.sh/d3-selection';
 import 'https://esm.sh/d3-transition';
